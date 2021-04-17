@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -18,8 +17,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class BuyerController{
-    public Button signout;
-    public Button buy;
 
     public Pane purchase;
     public Pane mainmenu;
@@ -27,25 +24,24 @@ public class BuyerController{
     public static boolean carrot = false;
     public static boolean celery = false;
     public static boolean eggplant = false;
+    
     @FXML public Label total;
+
     public static String totallabel = "";
-    public TextField contact;
+
     public TextArea receivedetails;
+    public Label checkavailable;
+    public Pane buyerinfo;
 
 
-    public void tobuyerinfo(ActionEvent actionEvent) throws IOException {
-        Parent Parent = FXMLLoader.load(getClass().getResource("buyerinfo.fxml"));
-        Scene Scene = new Scene(Parent);
-        Stage Stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Stage.setScene(Scene);
-        Stage.show();
+    public void tobuyerinfo(MouseEvent actionEvent) throws IOException {
+        buyerinfo.setVisible(true);
     }
 
     public void buy(ActionEvent actionEvent) throws IOException {
         FileWriter myWriterCollector = new FileWriter("collector.txt", true);
         myWriterCollector.write("FROM: Buyer"+"\r\n");
-        myWriterCollector.write("CONTACT: "+contact.getText()+"\r\n");
-        myWriterCollector.write("RECEIVE: "+receivedetails.getText()+"\r\n");
+        myWriterCollector.write("DELIVERY DETAILS: "+receivedetails.getText()+"\r\n");
         myWriterCollector.write("PRODUCTS\r\n");
         myWriterCollector.close();
         Parent Parent = FXMLLoader.load(getClass().getResource("purchase.fxml"));
@@ -55,7 +51,7 @@ public class BuyerController{
         Stage.show();
     }
 
-    public void signout(ActionEvent actionEvent) throws IOException {
+    public void exit(ActionEvent actionEvent) throws IOException {
         Parent mainmenuParent = FXMLLoader.load(getClass().getResource("../mainscreen.fxml"));
         Scene mainmenuScene = new Scene(mainmenuParent);
         Stage mainmenu =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -115,11 +111,15 @@ public class BuyerController{
         Stage.show();
     }
 
-    public void back2main(ActionEvent actionEvent) throws IOException {
+    public void back2main(MouseEvent actionEvent) throws IOException {
         Parent Parent = FXMLLoader.load(getClass().getResource("buyer.fxml"));
         Scene Scene = new Scene(Parent);
         Stage Stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Stage.setScene(Scene);
         Stage.show();
+    }
+
+    public void cancel(MouseEvent mouseEvent) {
+        buyerinfo.setVisible(false);
     }
 }
