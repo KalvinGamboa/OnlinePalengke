@@ -86,31 +86,32 @@ public class LoginRegisterController {
             warning.setText("Details Incomplete");
             warning.setVisible(true);
         }
-        if(password.getText().equals(confirmpassword.getText())) {
-            warning.setText("Password Does Not Match");
-            warning.setVisible(true);
-        }
         else {
-            warning.setVisible(false);
-            try {
-                FileWriter myWriterUser = new FileWriter("name.txt", true);
-                FileWriter myWriterPass = new FileWriter("password.txt", true);
-                FileWriter myWriterPhone = new FileWriter("phone.txt", true);
-                myWriterUser.write(firstname.getText() + "\r\n");
-                myWriterPass.write(password.getText() + "\r\n");
-                myWriterPhone.write(phonenumber.getText()+ "\r\n");
-                myWriterUser.close();
-                myWriterPass.close();
-                myWriterPhone.close();
-            } catch (IOException var5) {
-                System.out.println("An error occurred.");
-                var5.printStackTrace();
+            if (!password.getText().equals(confirmpassword.getText())) {
+                warning.setText("Password Does Not Match");
+                warning.setVisible(true);
+            } else {
+                warning.setVisible(false);
+                try {
+                    FileWriter myWriterUser = new FileWriter("name.txt", true);
+                    FileWriter myWriterPass = new FileWriter("password.txt", true);
+                    FileWriter myWriterPhone = new FileWriter("phone.txt", true);
+                    myWriterUser.write(firstname.getText() + "\r\n");
+                    myWriterPass.write(password.getText() + "\r\n");
+                    myWriterPhone.write(phonenumber.getText() + "\r\n");
+                    myWriterUser.close();
+                    myWriterPass.close();
+                    myWriterPhone.close();
+                } catch (IOException var5) {
+                    System.out.println("An error occurred.");
+                    var5.printStackTrace();
+                }
+                Parent mainmenuParent = FXMLLoader.load(getClass().getResource("mainscreen.fxml"));
+                Scene mainmenuScene = new Scene(mainmenuParent);
+                Stage mainmenu = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                mainmenu.setScene(mainmenuScene);
+                mainmenu.show();
             }
-            Parent mainmenuParent = FXMLLoader.load(getClass().getResource("mainscreen.fxml"));
-            Scene mainmenuScene = new Scene(mainmenuParent);
-            Stage mainmenu =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            mainmenu.setScene(mainmenuScene);
-            mainmenu.show();
         }
     }
 

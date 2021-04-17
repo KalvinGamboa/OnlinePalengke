@@ -24,7 +24,7 @@ public class BuyerController{
     public static boolean carrot = false;
     public static boolean celery = false;
     public static boolean eggplant = false;
-    
+
     @FXML public Label total;
 
     public static String totallabel = "";
