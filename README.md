@@ -24,6 +24,11 @@ For this version, the program can be opened using Java installed on Windows, Mac
 Download the file from: https://drive.google.com/file/d/1jzqDdVjcjP6ss0cjToxgY50NrlGL9Vcu/view?usp=sharing
 
 ---
+### Revision Log
+Version 1.0
+- Added Login/Register(Offline Version only) function
+- Added Purchase Products(Offline) function but with Preliminary Products only
+- Prototypes for Collector/Seller Screen can be viewed
 ### Contributors:
 * Kalvin Don Gamboa - email: kalvin_gamboa@dlsu.edu.ph
 * Daniel John Lemi - email: daniel_lemi@dlsu.edu.ph
