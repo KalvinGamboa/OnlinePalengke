@@ -1,4 +1,4 @@
-#Wet Market Ordering System#
+# Wet Market Ordering System
 Online selling has now emerged in our modern generation. With the sudden rise of technology, transactions are being done very fast and hassle free. By just clicking on our phones, we have been able to buy what we want without going to the actual stores or meeting up with the seller. These types of services are now offered in many different platforms. People go often to the wet markets early in the morning or even before sunrise because some products are running out of stock quickly and they need to catch up to it. With this case, some people with busy work are unable to go there since it takes up a lot of time. 
  
 Online wet market offers products from the wet market like meats and vegetables. Users can now buy without going to the actual store since it also offers a delivery option. Having a delivery option can also save a lot of time and is more convenient. It will eliminate the need for buyers to go to the actual wet market dealing with the crowd. Stores and their products that are included in the application will be verified in order to offer the users high quality products.
