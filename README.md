@@ -25,7 +25,7 @@ Download the file from: https://drive.google.com/file/d/1jzqDdVjcjP6ss0cjToxgY50
 
 ---
 ### Revision Log
-Version 1.0
+Version 1.0 (04/20/2021)
 - Added Login/Register(Offline Version only) function
 - Added Purchase Products(Offline) function but with Preliminary Products only
 - Prototypes for Collector/Seller Screen can be viewed
