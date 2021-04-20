@@ -6,7 +6,7 @@ Online wet market offers products from the wet market like meats and vegetables.
 ---
 ### Requirements:
 
-For this version, the program can be opened using Java installed on computers. Versions for android users might be added on future updates.
+For this version, the program can be opened using Java installed on Windows, Mac, or Linux that support intellij. Versions for android users will be added on future updates.
 
 --- 
 ### Setting up the Project in IntelliJ:
