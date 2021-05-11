@@ -38,17 +38,13 @@ public class LoginRegisterController {
     public String loginpass;
 
     public void logincheck(String phone, String password){
-        boolean stop = false;
-        String url = "jdbc:mysql://localhost:3306/account";
-        String sqlusername = "root";
-        String sqlpassword = "GMBS-calgary1";
         try{
-            Connection conn = DriverManager.getConnection(url,sqlusername,sqlpassword);
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/accounts","postgres","OnlinePalengke123");
             Statement sta = conn.createStatement();
-            String sql = "select * from account.useraccountdetails";
+            String sql = "select * from public.useraccountdetails";
             ResultSet login = sta.executeQuery(sql);
             while(login.next()){
-                if(password.equals(login.getString("password"))&&phone.equals(login.getString("mobile_number"))){
+                if(password.equals(login.getString("password"))&&phone.equals(login.getString("phone_number"))){
                     isuser = true;
                 }
             }
@@ -84,13 +80,10 @@ public class LoginRegisterController {
                 warning.setVisible(true);
             } else {
                 warning.setVisible(false);
-                String url = "jdbc:mysql://localhost:3306/account";
-                String sqlusername = "root";
-                String sqlpassword = "GMBS-calgary1";
                 try{
-                    Connection myconn = DriverManager.getConnection(url,sqlusername,sqlpassword);
-                    String sql = "INSERT INTO account.useraccountdetails"+"(first_name,last_name,password,mobile_number)"+"VALUES(?,?,?,?)";
-                    PreparedStatement preparedStatement = myconn.prepareStatement(sql);
+                    Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/accounts","postgres","OnlinePalengke123");
+                    String sql = "INSERT INTO public.useraccountdetails"+"(first_name,last_name,password,phone_number)"+"VALUES(?,?,?,?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
                     preparedStatement.setString(1, firstname.getText());
                     preparedStatement.setString(2, lastname.getText());
                     preparedStatement.setString(3, password.getText());
