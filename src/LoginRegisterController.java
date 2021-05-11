@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,31 +39,22 @@ public class LoginRegisterController {
 
     public void logincheck(String phone, String password){
         boolean stop = false;
-        List<String> lines = Collections.emptyList();
-        List lines2 = Collections.emptyList();
-        try {
-            lines = Files.readAllLines(Paths.get("password.txt"), StandardCharsets.UTF_8);
-            lines2 = Files.readAllLines(Paths.get("phone.txt"), StandardCharsets.UTF_8);
-        } catch (IOException var7) {
-            var7.printStackTrace();
-        }
-        do {
-            for(int i = 0; i < lines.size(); ++i) {
-                if (password.equals(lines.get(i))&&phone.equals(lines2.get(i))) {
-                    i = lines.size();
+        String url = "jdbc:mysql://localhost:3306/account";
+        String sqlusername = "root";
+        String sqlpassword = "GMBS-calgary1";
+        try{
+            Connection conn = DriverManager.getConnection(url,sqlusername,sqlpassword);
+            Statement sta = conn.createStatement();
+            String sql = "select * from account.useraccountdetails";
+            ResultSet login = sta.executeQuery(sql);
+            while(login.next()){
+                if(password.equals(login.getString("password"))&&phone.equals(login.getString("mobile_number"))){
                     isuser = true;
-                    stop = true;
-                }
-                if (i == lines.size() - 1) {
-                    stop = false;
-                    isuser = false;
-                    i++;
                 }
             }
-            if(!isuser){
-                stop = true;
-            }
-        } while(!stop);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
     public void login(ActionEvent actionEvent) throws IOException {
         loginpass = loginpassword.getText();
@@ -92,19 +84,21 @@ public class LoginRegisterController {
                 warning.setVisible(true);
             } else {
                 warning.setVisible(false);
-                try {
-                    FileWriter myWriterUser = new FileWriter("name.txt", true);
-                    FileWriter myWriterPass = new FileWriter("password.txt", true);
-                    FileWriter myWriterPhone = new FileWriter("phone.txt", true);
-                    myWriterUser.write(firstname.getText() + "\r\n");
-                    myWriterPass.write(password.getText() + "\r\n");
-                    myWriterPhone.write(phonenumber.getText() + "\r\n");
-                    myWriterUser.close();
-                    myWriterPass.close();
-                    myWriterPhone.close();
-                } catch (IOException var5) {
-                    System.out.println("An error occurred.");
-                    var5.printStackTrace();
+                String url = "jdbc:mysql://localhost:3306/account";
+                String sqlusername = "root";
+                String sqlpassword = "GMBS-calgary1";
+                try{
+                    Connection myconn = DriverManager.getConnection(url,sqlusername,sqlpassword);
+                    String sql = "INSERT INTO account.useraccountdetails"+"(first_name,last_name,password,mobile_number)"+"VALUES(?,?,?,?)";
+                    PreparedStatement preparedStatement = myconn.prepareStatement(sql);
+                    preparedStatement.setString(1, firstname.getText());
+                    preparedStatement.setString(2, lastname.getText());
+                    preparedStatement.setString(3, password.getText());
+                    preparedStatement.setString(4, phonenumber.getText());
+                    preparedStatement.executeUpdate();
+
+                } catch (SQLException e){
+                    e.printStackTrace();
                 }
                 Parent mainmenuParent = FXMLLoader.load(getClass().getResource("mainscreen.fxml"));
                 Scene mainmenuScene = new Scene(mainmenuParent);
