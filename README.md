@@ -31,6 +31,9 @@ Version 0.1 (04/20/2021)
 - Added Login/Register(Offline Version only) function
 - Added Purchase Products(Offline) function but with Preliminary Products only
 - Prototypes for Collector/Seller Screen can be viewed
+Version 1.0 (05/30/2021)
+- Fully Working Functions
+- Added Admin Controls
 ### Contributors:
 * Kalvin Don Gamboa - email: kalvin_gamboa@dlsu.edu.ph
 * Daniel John Lemi - email: daniel_lemi@dlsu.edu.ph
